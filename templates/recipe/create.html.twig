@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une recette{% endblock %}
+{% block stylesheets %}
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> 
+<link rel="stylesheet" href="{{asset('styles/test.css') }}">
+
+ {% endblock %}
+
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center red">Ajouter une recette</h1>
+
+        {{ form_start(recipeform, {'attr': {'class': 'form'}}) }}
+
+        <div class="mb-3 ">
+            {{ form_label(recipeform.name, 'Nom de la recette', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(recipeform.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(recipeform.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(recipeform.description, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(recipeform.slug, 'Slug', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(recipeform.slug, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(recipeform.categorie, 'Categorie', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(recipeform.categorie, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+
+        {{ form_end(recipeform) }}
+    </div>
+
+    <img src="{{ asset('imgs/1.jpg') }}" alt="image de recette" class="imgs m-4 ">
+
+{% endblock %}

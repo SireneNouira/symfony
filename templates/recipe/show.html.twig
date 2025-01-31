@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RecipeController!{% endblock %}
+
+{% block body %}
+
+
+    <article>
+        <h1>{{ recipe.name }}</h1>
+        <p>{{ recipe.description }}</p>
+              <p>Categorie : {{ recipe.categorie }}</p>
+        <a href="{{path('app_recipe_delete', {'id': recipe.id})}}">Supprimer la recette </a>
+        <br>
+        <a href="{{path('app_recipe_update', {'id': recipe.id})}}">Modifier la recette </a>
+    </article>
+ 
+ 
+
+
+
+{% endblock %}
+
