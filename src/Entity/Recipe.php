@@ -6,6 +6,7 @@ use App\Repository\RecipeRepository;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
@@ -31,6 +32,10 @@ class Recipe
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $categorie = null;
 
+    #[ORM\ManyToOne(inversedBy: 'recipes')]
+    #[ORM\JoinColumn(nullable: false)] 
+    private ?User $user = null;
+    
 
     public function __construct()
     {
@@ -101,5 +106,16 @@ class Recipe
         return $this;
     }
 
+  
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(UserInterface $user): self
+    {
+        $this->user = $user;
+        return $this;
+    }
    
 }

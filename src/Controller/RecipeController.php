@@ -28,26 +28,46 @@ final class RecipeController extends AbstractController
         ]);
     }
 
-  #[Route('/recipe/create', name: 'app_recipe_create')]
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
-    {
+//   #[Route('/recipe/create', name: 'app_recipe_create')]
+//     public function create(Request $request, EntityManagerInterface $entityManager): Response
+//     {
 
-        $recipe = new Recipe();
-        $recipeform = $this->createForm(RecipeType::class, $recipe);
-        $recipeform->handleRequest($request);
+//         $recipe = new Recipe();
+//         $recipeform = $this->createForm(RecipeType::class, $recipe);
+//         $recipeform->handleRequest($request);
 
-        if($recipeform->isSubmitted() && $recipeform->isValid()) {
-            // dd($recipe);
-            $entityManager->persist($recipe);
-            $entityManager->flush();
+//         if($recipeform->isSubmitted() && $recipeform->isValid()) {
+        
+//             $entityManager->persist($recipe);
+//             $entityManager->flush();
 
-            return $this->redirectToRoute('app_recipeAll');
-        }
+//             return $this->redirectToRoute('app_recipeAll');
+//         }
 
-        return $this->render('recipe/create.html.twig', [
-            'recipeform' => $recipeform->createView(),
-        ]);
+//         return $this->render('recipe/create.html.twig', [
+//             'recipeform' => $recipeform->createView(),
+//         ]);
+//     }
+#[Route('/recipe/create', name: 'app_recipe_create')]
+public function create(Request $request, EntityManagerInterface $entityManager): Response
+{
+    $recipe = new Recipe();
+    $recipe->setUser($this->getUser()); // Associe l'utilisateur connecté
+
+    $recipeform = $this->createForm(RecipeType::class, $recipe);
+    $recipeform->handleRequest($request);
+
+    if ($recipeform->isSubmitted() && $recipeform->isValid()) {
+        $entityManager->persist($recipe);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_recipeAll');
     }
+
+    return $this->render('recipe/create.html.twig', [
+        'recipeform' => $recipeform->createView(),
+    ]);
+}
 
     #[Route('/recipes/{id}', name: 'app_recipe')]
     public function show(int $id, RecipeRepository $recipeRepository): Response
@@ -98,7 +118,7 @@ final class RecipeController extends AbstractController
         $recipeform->handleRequest($request);
 
         if($recipeform->isSubmitted() && $recipeform->isValid()) {
-            // dd($recipe);
+          
             $entityManager->persist($recipe);
             $entityManager->flush();
 
