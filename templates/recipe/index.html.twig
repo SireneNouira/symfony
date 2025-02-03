@@ -1,19 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello RecipeController!{% endblock %}
-
+{% block body_class %}recipe-page{% endblock %}
 {% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-danger font-weight-bold">Recettes</h1>
 
-{% for recipe in recipes %}
-
-    <article>
-        <h1>{{ recipe.name }}</h1>
-        <p>Categorie : {{ recipe.categorie }}</p>
-        <a href="{{ path('app_recipe', {'id': recipe.id}) }}"> Voir la recette </a>
-    </article>
-   
-{% endfor %}
-
+        {% for recipe in recipes %}
+            <article class="bg-light p-4 mb-3 rounded shadow-sm">
+                <h2 class="text-center ">{{ recipe.name }}</h2>
+                <p class="text-center text-muted">Catégorie : {{ recipe.categorie }}</p>
+                <div class="text-center">
+                    <a href="{{ path('app_recipe', {'id': recipe.id}) }}" class="btn btn-outline-danger btn-sm">Voir la recette</a>
+                </div>
+            </article>
+        {% else %}
+            <p class="text-center">Aucune recette trouvée.</p>
+        {% endfor %}
+    </div>
 {% endblock %}
 
-{# echo doucle accolade {{}} #}

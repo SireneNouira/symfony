@@ -1,0 +1,192 @@
+header {
+  background-color: #f5c6cb;
+  padding: 15px 0;
+  width: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+
+}
+
+header ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+header ul li {
+  display: inline;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 15px;
+  transition: background 0.3s, color 0.3s;
+}
+
+header ul li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.register-page {
+  background: url("../imgs/bg-register3.jpg") no-repeat fixed center;
+  background-size: cover;
+ 
+}
+.login-page {
+  background: url("../imgs/bg-register3.jpg") no-repeat fixed center;
+  background-size: cover;
+}
+
+.register-form-container {
+  background: rgba(255, 255, 255, 0.9);
+  margin-top: 50px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+}
+
+.register-form-container h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.register-form-container label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.register-form-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.register-form-container button {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin: 10px 0;
+}
+
+.register-form-container button:hover {
+  background-color: #0056b3;
+}
+
+.register-form-container .form-error {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.recipe-page {
+  background: url("../imgs/istockphoto-1283685546-612x612.jpg") no-repeat fixed center;
+  background-size: cover;
+  color: #6b4f31;
+  h1 {
+    font-size: 2.5rem;
+    color: #d9534f;
+    font-family: "Georgia", serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+}
+.category-page {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: url("../imgs/cuisine-de-la-bannière-les-légumes-et-épices-sur-fond-blanc-l-espace-libre-votre-texte-style-rustique-182815173.webp") no-repeat fixed center;
+  background-size: cover;
+  color: #6b4f31;
+  h1 {
+    font-size: 2.5rem;
+    color: #d9534f;
+    font-family: "Georgia", serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+}
+
+.table {
+  background-color: #fff3e6;
+  border-radius: 8px;
+  border: 1px solid #f5c6cb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.table th {
+  background-color: #f8d7da;
+  color: #6c757d;
+  font-weight: bold;
+}
+
+.table td {
+  color: #5a2a1d;
+}
+
+.table td a {
+  color: #d9534f;
+  text-decoration: none;
+  border: 1px solid #d9534f;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.table td a:hover {
+  background-color: #d9534f;
+  color: white;
+}
+
+.btn-outline-dark {
+  border-color: #6b4f31;
+  color: #6b4f31;
+  border-radius: 20px;
+}
+
+.btn-outline-dark:hover {
+  background-color: #6b4f31;
+  color: white;
+}
+
+.btn-success {
+  background-color: #88c9e1;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.btn-success:hover {
+  background-color: #4d9ba9;
+  border-color: #4d9ba9;
+}

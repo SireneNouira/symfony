@@ -1,22 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RecipeController!{% endblock %}
-
-{% block body %}
-
-
-    <article>
-        <h1>{{ recipe.name }}</h1>
-        <p>{{ recipe.description }}</p>
-              <p>Categorie : {{ recipe.categorie }}</p>
-        <a href="{{path('app_recipe_delete', {'id': recipe.id})}}">Supprimer la recette </a>
-        <br>
-        <a href="{{path('app_recipe_update', {'id': recipe.id})}}">Modifier la recette </a>
-    </article>
- 
- 
-
-
-
+{% block title %}Hello RecipeController!
 {% endblock %}
+{% block body_class %}recipe-page
+{% endblock %}
+{% block body %}
+	<div class="container mt-5">
+		<article class="bg-light p-4 rounded shadow-sm">
+			<h1 class="text-center text-danger">{{ recipe.name }}</h1>
+			<p class="text-center text-muted">{{ recipe.description }}</p>
+			<p class="text-center text-muted">Catégorie :
+				{{ recipe.categorie }}</p>
 
+			<div class="text-center mt-4">
+				{% if is_granted('delete', recipe) %}
+					<a href="{{ path('app_recipe_delete', {'id': recipe.id}) }}" class="btn btn-outline-danger btn-sm mx-2">Supprimer la recette</a>
+				{% endif %}
+				{% if is_granted('edit', recipe) %}
+					<a href="{{ path('app_recipe_update', {'id': recipe.id}) }}" class="btn btn-outline-warning btn-sm mx-2">Modifier la recette</a>
+
+				{% endif %}
+
+			</div>
+		</article>
+	</div>
+{% endblock %}

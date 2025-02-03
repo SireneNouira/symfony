@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Register{% endblock %}
 
+{% block body_class %}register-page{% endblock %}
+
 {% block body %}
+<div class="register-form-container ">
     <h1>Register</h1>
 
     {{ form_errors(registrationForm) }}
@@ -17,4 +21,6 @@
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
+    <p>Deja inscrit ? <a href="{{ path('app_login') }}">Connectez-vous</a></p>
+       </div>
 {% endblock %}

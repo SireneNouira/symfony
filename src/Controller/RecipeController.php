@@ -96,8 +96,10 @@ public function create(Request $request, EntityManagerInterface $entityManager):
     }
 
     #[Route('/recipes/{id}/delete', name: 'app_recipe_delete')]
-    public function delete(int $id, RecipeRepository $recipeRepository, EntityManagerInterface $entityManager): Response
+    public function delete(Recipe $recipe, int $id, RecipeRepository $recipeRepository, EntityManagerInterface $entityManager): Response
     {
+
+        $this->denyAccessUnlessGranted('delete', $recipe);
 
         $recipe = $recipeRepository->find($id);
 
@@ -109,9 +111,10 @@ public function create(Request $request, EntityManagerInterface $entityManager):
 
 
     #[Route('/recipe/update/{id}', name: 'app_recipe_update')]
-    public function update(int $id, Request $request, EntityManagerInterface $entityManager, RecipeRepository $recipeRepository): Response
+    public function update(Recipe $recipe, int $id, Request $request, EntityManagerInterface $entityManager, RecipeRepository $recipeRepository): Response
     {
 
+        $this->denyAccessUnlessGranted('edit', $recipe);
         $recipe = $recipeRepository->find($id);
 
         $recipeform = $this->createForm(RecipeType::class, $recipe);

@@ -6,7 +6,9 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> 
         {# //  <script defer src="https://cdn.tailwindcss.com"></script> #}
+        <link rel="stylesheet" href="{{asset('styles/app.css') }}">
         {% block stylesheets %}
+        
         {% endblock %}
 
         {% block javascripts %}
@@ -15,18 +17,26 @@
     </head>
     <body>
     
-     <header><p>Mon hearder toujours present</p>
+     <header>
+     <ul>
      
-     {% if app.user %}
-     <p>Hi {{ app.user.pseudo }}</p>
-     <a href="{{ path('app_logout') }}">Logout</a>
+          <li><a href="{{ path('app_recipeAll') }}">Voir les recettes</a></li>
+          <li><a href="{{ path('app_recipe_create') }}">Crée une recette</a></li>
+      <li><a href="{{ path('app_category_index') }}">Voir les categories</a></li>
+     {% if app.user %}  
+        
+
+     <li>Bonjour {{ app.user.pseudo }}</li>
+     <li><a href="{{ path('app_logout') }}">Logout</a></li>
      {% else %}
-     <a href="{{ path('app_login') }}">Login</a>
-     <br>
-     <a href="{{ path('app_register') }}">Register</a>
+     <li><a href="{{ path('app_login') }}">Login</a></li>
+    
+     <li><a href="{{ path('app_register') }}">Register</a></li>
      {% endif %}
-     
+     </ul>
      </header>
+
+<body class="{% block body_class %}{% endblock %}">
 
         {% block body %}{% endblock %} 
 

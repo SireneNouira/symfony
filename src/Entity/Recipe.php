@@ -7,6 +7,7 @@ use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
@@ -17,19 +18,30 @@ class Recipe
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 2, max: 255)]
+    #[Assert\NotNull(message: "Le nom de la recette est obligatoire")]
     private ?string $name = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank()]
+    #[Assert\NotNull(message: "La description de la recette est obligatoire")]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 2, max: 255)]
+    #[Assert\NotNull(message: "Le slug de la recette est obligatoire")]
     private ?string $slug = null;
 
     #[ORM\ManyToOne(inversedBy: 'recipes')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 2, max: 255)]
+    #[Assert\NotNull(message: "La catégorie de la recette est obligatoire")]
     private ?Category $categorie = null;
 
     #[ORM\ManyToOne(inversedBy: 'recipes')]
