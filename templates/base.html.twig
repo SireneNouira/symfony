@@ -21,20 +21,40 @@
      <ul>
      
           <li><a href="{{ path('app_recipeAll') }}">Voir les recettes</a></li>
-          <li><a href="{{ path('app_recipe_create') }}">Crée une recette</a></li>
+          
       <li><a href="{{ path('app_category_index') }}">Voir les categories</a></li>
      {% if app.user %}  
         
 
      <li>Bonjour {{ app.user.pseudo }}</li>
+     <li><a href="{{ path('app_recipe_create') }}">Crée une recette</a></li>
      <li><a href="{{ path('app_logout') }}">Logout</a></li>
      {% else %}
      <li><a href="{{ path('app_login') }}">Login</a></li>
     
      <li><a href="{{ path('app_register') }}">Register</a></li>
      {% endif %}
+  
+     <form action="{{ path('app_recipe_search') }}" method="GET" class="d-flex">
+    <input type="text" name="q" class="form-control me-2" placeholder="Rechercher...">
+    <button type="submit" class="btn btn-primary">🔍</button>
+</form>
+
      </ul>
+
+
      </header>
+     
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-message alert alert-{{ type }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endfor %}
+
+
 
 <body class="{% block body_class %}{% endblock %}">
 

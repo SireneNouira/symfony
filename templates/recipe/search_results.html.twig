@@ -1,0 +1,23 @@
+{# templates/recipe/search_results.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats de la recherche{% endblock %}
+
+{% block body %}
+    <h1>Résultats de la recherche pour "{{ searchTerm }}"</h1>
+
+    {% if recipes is not empty %}
+        <ul>
+            {% for recipe in recipes %}
+                <li>
+                    <strong>{{ recipe.name }}</strong><br>
+                    Description: {{ recipe.description }}<br>
+                   
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune recette trouvée pour "{{ searchTerm }}".</p>
+    {% endif %}
+{% endblock %}

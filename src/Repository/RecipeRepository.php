@@ -14,7 +14,20 @@ class RecipeRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Recipe::class);
+
     }
+    public function findBySearchTerm(string $term)
+    {
+        return $this->createQueryBuilder('r')
+            
+            ->where('r.name LIKE :term') 
+            ->orWhere('r.description LIKE :term') 
+       
+            ->setParameter('term', '%' . $term . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
 
     //    /**
     //     * @return Recipe[] Returns an array of Recipe objects
@@ -40,4 +53,6 @@ class RecipeRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+
 }

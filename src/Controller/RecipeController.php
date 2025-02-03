@@ -60,7 +60,7 @@ public function create(Request $request, EntityManagerInterface $entityManager):
     if ($recipeform->isSubmitted() && $recipeform->isValid()) {
         $entityManager->persist($recipe);
         $entityManager->flush();
-
+        $this->addFlash('success', 'Recette ajouter avec succès.');
         return $this->redirectToRoute('app_recipeAll');
     }
 
@@ -105,7 +105,7 @@ public function create(Request $request, EntityManagerInterface $entityManager):
 
         $entityManager->remove($recipe);
         $entityManager->flush();
-
+        $this->addFlash('success', 'Recette supprimer avec succès.');
         return $this->redirectToRoute('app_recipeAll');
     }
 
@@ -124,7 +124,7 @@ public function create(Request $request, EntityManagerInterface $entityManager):
           
             $entityManager->persist($recipe);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Recette modifier avec succès.');
             return $this->redirectToRoute('app_recipeAll');
         }
 
@@ -134,5 +134,25 @@ public function create(Request $request, EntityManagerInterface $entityManager):
         ]);
     }
 
-  
+  // Route pour afficher toutes les recettes
+  #[Route('/rechercher', name: 'app_recipe_search')]
+  public function search(Request $request, RecipeRepository $recipeRepository)
+  {
+      // Récupérer la valeur du champ de recherche
+      $searchTerm = $request->query->get('q');
+
+      // Effectuer la recherche dans la base de données
+      if ($searchTerm) {
+          $recipes = $recipeRepository->findBySearchTerm($searchTerm);
+      } else {
+          $recipes = $recipeRepository->findAll();
+      }
+
+      // Retourner les résultats à la vue
+      return $this->render('recipe/search_results.html.twig', [
+          'recipes' => $recipes,
+          'searchTerm' => $searchTerm,
+      ]);
+  }
+    
 }

@@ -190,3 +190,14 @@ header ul li:hover {
   background-color: #4d9ba9;
   border-color: #4d9ba9;
 }
+.flash-message {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.flash-success { background-color: #d4edda; color: #155724; }
+.flash-error { background-color: #f8d7da; color: #721c24; }
+.flash-warning { background-color: #fff3cd; color: #856404; }
+.flash-info { background-color: #d1ecf1; color: #0c5460; }
